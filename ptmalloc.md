@@ -2,6 +2,8 @@
 
 每个arena从一个或多个堆上获取可分配的内存。main arena使用进程空间初始的堆，其它的arena调用mmap分配堆内存。
 
+堆中的chunk要么被分配给了应用，要么是空闲待分配。待分配的chunk按照大小和使用时间存放在各种有序链表中，便于在需要分配时快速找到合适的chunk，这些存放chunk的链表称为bin。
+
 ##### 参考链接
 1. [The GNU Allocator](https://www.gnu.org/software/libc/manual/html_node/The-GNU-Allocator.html)
 2. [malloc实现原理](https://sourceware.org/glibc/wiki/MallocInternals)
